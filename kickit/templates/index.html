@@ -21,14 +21,18 @@
                     <table class="file-browser">
                         {% for dirdetails in dirs %}
                         <tr>
-                            <td><img class="icon" src="{{ url_for('static', filename='directory.png') }}">{{ dirdetails }}</td>
+                            <td><img class="icon" src="{{ url_for('static', filename='directory.png') }}">
+                                <a href="/{{ projectname }}/tree/{{ branch }}/{% if param != '' %}{{ param }}/{% endif %}{{ dirdetails }}">{{ dirdetails }}</a>
+                            </td>
                         </tr>
                         {% endfor %}
                         {% for filedetails in files %}
                         <tr>
-                            <td><img class="icon" src="{{ url_for('static', filename='file.png') }}">{{ filedetails }}</td>
+                            <td><img class="icon" src="{{ url_for('static', filename='file.png') }}">
+                                <a href="/{{ projectname }}/blob/{{ branch }}/{% if param != '' %}{{ param }}/{% endif %}{{ filedetails }}">{{ filedetails }}</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </table>
                 </div>
-{% endblock %}
+{% endblock  %}
