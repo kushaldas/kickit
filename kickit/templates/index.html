@@ -1,0 +1,30 @@
+{% extends "master.html" %}
+{% block content %}
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul class="nav">
+                                <li><a href="#">Explore Product</a></li>
+                                <li><a href="#">Search</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Blog</a></li>   
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="fileslist" class="cfix">
+                    <span class="name">
+                        Filelist
+                    </span>
+                    <div class="text-message">
+                        Who committed
+                    </div>
+                    <table class="file-browser">
+                        {% for filedetails in files %}
+                        <tr>
+                            <td>{{ filedetails }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+{% endblock %}
