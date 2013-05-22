@@ -1,5 +1,6 @@
 import os
 import subprocess
+from git import Repo
 
 def system(cmd):
     """ 
@@ -10,22 +11,39 @@ def system(cmd):
     out, err = ret.communicate()
     return out
 
-def get_files(path):
+def get_files(path, branchname='master'):
     '''
     Returns a tuple containing list of directories and files from given git repo.
 
     :arg path: Path to the git
     '''
-    command = 'git --git-dir %s/.git ls' % path
-    names = system(command)
+    repo = Repo(path)
     dirs = []
     files = []
-    for name in names.split('\n'):
-        if name.find('/') != -1:
-            dirs.append(name.split('/')[0])
+    head = get_head(repo, branchname)
+    for data in head.commit.tree:
+        if data.type == 'blob':
+            files.append(data.path)
         else:
-            files.append(name)
-
+            dirs.append(data.path)
     dirs.sort()
     files.sort()
     return set(dirs), files
+
+def get_head(repo, name):
+    '''
+    :arg repo: Repo object
+    :arg name: Name of the branch we are looking for.
+
+    :return: Branch object pointing to master or None.
+    '''
+    for head in repo.heads:
+        if head.name == name:
+            return head
+
+
+
+def get_branches(path):
+    repo = Repo(path)
+    return [r.name for r in repo.heads]
+
