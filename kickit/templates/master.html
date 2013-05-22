@@ -8,6 +8,10 @@
     <link type="text/css" rel="stylesheet"
         href="{{ url_for('static',
             filename='bootstrap/css/bootstrap.min.css')}}" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',
+            filename='bootstrap/js/bootstrap.min.js')}}" />></script>
+
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -23,6 +27,12 @@
             </div>
         </div>
     </div>
-
+<script type="text/javascript">
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+    $('.dropdown-toggle').dropdown()
+</script>
 </body>
 </html>

@@ -1,17 +1,16 @@
 {% extends "master.html" %}
 {% block content %}
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="container">
-                            <ul class="nav">
-                                <li><a href="#">Explore Product</a></li>
-                                <li><a href="#">Search</a></li>
-                                <li><a href="#">Features</a></li>
-                                <li><a href="#">Blog</a></li>   
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <ul class="nav nav-tabs">
+                <li class="active"><a href="#files" data-toggle="tab">Tree</a></li>
+                <li><a href="/{{ projectname }}/commits" data-toggle="tab">Commits</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Branches<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        {% for name in branches%}
+                        <li>{{ name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                </ul>
                 <div id="fileslist" class="cfix">
                     <span class="name">
                         Filelist
@@ -22,18 +21,12 @@
                     <table class="file-browser">
                         {% for dirdetails in dirs %}
                         <tr>
-                            <td class="icon">
-                                <img src="{{ url_for('static', filename='directory.png') }}"
-                            </td>
-                            <td>{{ dirdetails }}</td>
+                            <td><img class="icon" src="{{ url_for('static', filename='directory.png') }}">{{ dirdetails }}</td>
                         </tr>
                         {% endfor %}
                         {% for filedetails in files %}
                         <tr>
-                                <td class="icon">
-                                <img src="{{ url_for('static', filename='file.png') }}"
-                            </td>
-                            <td>{{ filedetails }}</td>
+                            <td><img class="icon" src="{{ url_for('static', filename='file.png') }}">{{ filedetails }}</td>
                         </tr>
                         {% endfor %}
                     </table>
