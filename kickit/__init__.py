@@ -17,11 +17,14 @@ def index(reponame):
     return render_template('index.html', dirs=dirs, files=files, projectname=reponame, branches=branches)
 
 
-@app.route('/<reponame>/tree/<branchname>')
-def index_branch(reponame, branchname):
+@app.route('/<reponame>/tree/<branchname>', defaults={'path': ''})
+@app.route('/<reponame>/tree/<branchname>/<path:path>')
+def index_branch(reponame, branchname, path):
+    print path
     repopath = os.path.join(PATH, reponame)
     if not os.path.exists(repopath):
         return "Sorry"
-    dirs, files = get_files(repopath, branchname)
+    dirs, files = get_files(repopath, branchname, param=path)
     branches = get_branches(repopath)
-    return render_template('index.html', dirs=dirs, files=files, projectname=reponame, branches=branches)
+    return render_template('index.html', dirs=dirs, files=files, projectname=reponame, branches=branches, param=path,
+                           branch=branchname)
