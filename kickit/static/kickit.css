@@ -1,0 +1,60 @@
+.cfix {
+    display: block;
+}
+
+#filelist {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 3px 3px 3px 3px;
+    padding: 3px;
+}
+
+span.name {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #EAEAEA;
+    background-image: linear-gradient(#FAFAFA, #EAEAEA);
+    background-repeat: repeat-x;
+    border-color: #CACACA #CACACA -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    color: #555555;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 10px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+tr:nth-child(even) {
+    background-color: #EAEAEA;
+}
+
+tr:nth-child(odd) {
+    background-color: #EEEEEE;
+}
+
+.test-message {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-top: 1px solid #D8E6EC;
+    margin-left: -8px;
+    padding: 8px;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: inherit;
+}
+
+.file-browser {
+    border-bottom: 1px solid #CACACA;
+    border-left: medium none;
+    border-right: medium none;
+    margin: 0;
+    width: 100%;
+}
