@@ -11,7 +11,7 @@ def system(cmd):
     out, err = ret.communicate()
     return out
 
-def get_files(path, branchname='master'):
+def get_files(path, branchname='master', param=''):
     '''
     Returns a tuple containing list of directories and files from given git repo.
 
@@ -21,11 +21,14 @@ def get_files(path, branchname='master'):
     dirs = []
     files = []
     head = get_head(repo, branchname)
-    for data in head.commit.tree:
+    tree = head.commit.tree
+    if param:
+        tree = tree[param]
+    for data in tree:
         if data.type == 'blob':
-            files.append(data.path)
+            files.append(data.name)
         else:
-            dirs.append(data.path)
+            dirs.append(data.name)
     dirs.sort()
     files.sort()
     return set(dirs), files
