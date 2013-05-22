@@ -1,4 +1,5 @@
 import os
+from .utils import get_files
 from flask import Flask
 from flask import render_template
 
@@ -11,5 +12,5 @@ def index(reponame):
     repopath = os.path.join(PATH, reponame)
     if not os.path.exists(repopath):
         return "Sorry"
-    fd = [(name) for name in os.listdir(repopath) if not name.startswith('.')]
-    return render_template('index.html', files=fd)
+    dirs, files = get_files(repopath)
+    return render_template('index.html', dirs=dirs, files=files)

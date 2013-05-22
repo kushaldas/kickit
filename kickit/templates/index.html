@@ -20,8 +20,19 @@
                         Who committed
                     </div>
                     <table class="file-browser">
+                        {% for dirdetails in dirs %}
+                        <tr>
+                            <td class="icon">
+                                <img src="{{ url_for('static', filename='directory.png') }}"
+                            </td>
+                            <td>{{ dirdetails }}</td>
+                        </tr>
+                        {% endfor %}
                         {% for filedetails in files %}
                         <tr>
+                                <td class="icon">
+                                <img src="{{ url_for('static', filename='file.png') }}"
+                            </td>
                             <td>{{ filedetails }}</td>
                         </tr>
                         {% endfor %}
