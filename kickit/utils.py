@@ -40,8 +40,6 @@ def get_head(repo, name):
 
     :return: Branch object pointing to master or None.
     '''
-    #for o in repo.iter_commits():
-    #    from ipdb import set_trace;set_trace()
     for head in repo.heads:
         if head.name == name:
             return head
