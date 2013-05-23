@@ -1,6 +1,11 @@
 import os
 import subprocess
 from git import Repo
+from jinja2.ext import Markup
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name, guess_lexer, get_lexer_for_mimetype
+from pygments.formatters import HtmlFormatter
+from pygments.util import ClassNotFound
 
 def system(cmd):
     """ 
@@ -50,3 +55,32 @@ def get_branches(path):
     repo = Repo(path)
     return [r.name for r in repo.heads]
 
+def get_mime_type(repo, branchname, path):
+    '''
+    Find the mime-type of the given path.
+    '''
+    branch = None
+    for head in repo.heads:
+        if head.name == branchname:
+            branch = head
+            break
+
+    if branch:
+        blob = branch.commit.tree[path]
+        return blob.mime_type
+
+def get_blob_text(repopath, path, branchname='master'):
+    repo = Repo(repopath)
+    git = repo.git
+    text = None
+    text = git.show('%s:%s' % (branchname, path))
+    mime_type = get_mime_type(repo, branchname, path)
+    try:
+        lexer = get_lexer_for_mimetype(mime_type)
+    except ClassNotFound:
+        lexer = get_lexer_by_name('text')
+    formatter = HtmlFormatter(linenos=True, lineanchors='line', anchorlinenos=True)
+    print text
+    result = highlight(Markup(text).unescape(), lexer, formatter)
+    print result
+    return result

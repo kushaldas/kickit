@@ -1,0 +1,9 @@
+{% extends "master.html" %}
+{% block head %}
+<link type="text/css" rel="stylesheet"
+        href="{{ url_for('static', filename='sourceview.css')}}" />
+{% endblock %}
+{% block content %}
+{{ text|safe }}
+
+{% endblock  %}

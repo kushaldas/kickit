@@ -15,17 +15,9 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
-            <!--Sidebar content-->
-            Hello World!
-            </div>
-            <div class="span10">
-            <!--Body content-->
-            {% block content %}{% endblock %}
-            </div>
-        </div>
+    <div class="container">
+        <!--Body content-->
+        {% block content %}{% endblock %}
     </div>
 <script type="text/javascript">
     $('#myTab a').click(function (e) {
