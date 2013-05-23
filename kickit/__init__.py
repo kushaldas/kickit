@@ -1,5 +1,5 @@
 import os
-from .utils import get_files, get_branches, shutdown_server
+from .utils import get_files, get_branches, shutdown_server, get_git_directories
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -11,6 +11,13 @@ try:
 except:
     raise RuntimeError('settings/settings.py file not configured properly.')
     shutdown_server()
+
+@app.route('/')
+def home():
+    if PATH is None:
+        return 'PATH not set properly. Check the settings/settings.py file'
+    dirs = get_git_directories(PATH)
+    return render_template('home.html', dirs=dirs)
 
 @app.route('/<reponame>')
 def index(reponame):

@@ -11,6 +11,15 @@ def system(cmd):
     out, err = ret.communicate()
     return out
 
+def get_git_directories(path):
+    '''
+    Return a list containing list of git directories
+
+    :arg path: Path to directory to search
+    '''
+    return [x for x in os.listdir(path) if os.path.exists(os.path.join(
+                                                            path,x,'.git'))]
+
 def get_files(path, branchname='master', param=''):
     '''
     Returns a tuple containing list of directories and files from given git repo.

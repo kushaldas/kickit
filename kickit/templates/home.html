@@ -1,0 +1,7 @@
+{% extends "master.html" %}
+
+{% block content %}
+    {% for dir in dirs %}
+    <a href="{{ dir }}">{{ dir }}</a><br />
+    {% endfor %}
+{% endblock %}
