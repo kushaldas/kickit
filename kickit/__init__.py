@@ -1,14 +1,21 @@
 import os
-from .utils import get_files, get_branches
+from .utils import get_files, get_branches, shutdown_server
 from flask import Flask
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 
-PATH = '/home/kdas/code/git/'
+try:
+    from settings.settings import PATH
+except:
+    raise RuntimeError('settings/settings.py file not configured properly.')
+    shutdown_server()
 
 @app.route('/<reponame>')
 def index(reponame):
+    if PATH is None:
+        return 'PATH not set properly. Check the settings/settings.py file'
     repopath = os.path.join(PATH, reponame)
     if not os.path.exists(repopath):
         return "Sorry"

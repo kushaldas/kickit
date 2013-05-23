@@ -1,0 +1,4 @@
+# Copy the settings/settings.py-dist to settings/settings.py
+# Set the PATH variable to a directory which contains Git powered projects
+
+PATH = None

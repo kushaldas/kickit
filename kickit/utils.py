@@ -40,13 +40,18 @@ def get_head(repo, name):
 
     :return: Branch object pointing to master or None.
     '''
+    #for o in repo.iter_commits():
+    #    from ipdb import set_trace;set_trace()
     for head in repo.heads:
         if head.name == name:
             return head
-
-
 
 def get_branches(path):
     repo = Repo(path)
     return [r.name for r in repo.heads]
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()

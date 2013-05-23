@@ -6,7 +6,7 @@
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Branches<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         {% for name in branches%}
-                        <li>{{ name }}</li>
+                        <li><a href="/{{ projectname }}/tree/{{ name }}">{{ name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
