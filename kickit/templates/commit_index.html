@@ -1,0 +1,8 @@
+{% extends "master.html" %}
+{% block content %}
+{% for com in data%}
+<p>
+    {{ com.hex }} {{ com.author }} {{ com.time }} {{ com.text }}
+</p>
+{% endfor %}
+{% endblock  %}
