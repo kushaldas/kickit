@@ -1,6 +1,6 @@
 import os
-from .utils import get_files, get_branches, get_blob_text
-from flask import Flask
+from .utils import get_files, get_branches, get_blob_text, show_commit_index
+from flask import Flask, request
 from flask import render_template
 from jinja2.ext import Markup
 
@@ -40,3 +40,20 @@ def show_blob(reponame, branchname, path):
         return "Sorry"
     data = get_blob_text(repopath, path, branchname)
     return render_template('blob.html', text=Markup(data).unescape())
+
+@app.route('/<reponame>/commits/')
+@app.route('/<reponame>/commits/<branchname>', defaults={'path': ''})
+@app.route('/<reponame>/commits/<branchname>/<path:path>')
+def index_commits(reponame, branchname='master', path=''):
+    repopath = os.path.join(PATH, reponame)
+    if not os.path.exists(repopath):
+        return "Sorry"
+    page = 1
+    try:
+        if 'page' in request.args:
+            page = int(request.args['page'])
+    except Exception:
+        pass
+    if not path: # We need to show the index
+        data = show_commit_index(repopath, branchname, page)
+    return render_template('commit_index.html', data=data)

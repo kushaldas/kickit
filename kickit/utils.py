@@ -1,4 +1,5 @@
 import os
+import time
 import subprocess
 from git import Repo
 from jinja2.ext import Markup
@@ -80,7 +81,27 @@ def get_blob_text(repopath, path, branchname='master'):
     except ClassNotFound:
         lexer = get_lexer_by_name('text')
     formatter = HtmlFormatter(linenos=True, lineanchors='line', anchorlinenos=True)
-    print text
     result = highlight(Markup(text).unescape(), lexer, formatter)
-    print result
+    return result
+
+def show_commit_index(repopath='', branchname='master', page=1):
+    '''
+    Provides the index data for commits.
+
+    :arg repopath: Path to the git repo
+    :arg branchname: Branch we want to show, default is `master`.
+    :arg page: Integer pagenumber
+    '''
+    repo = Repo(repopath)
+    skip = (page - 1 ) * 5
+    itercommits = repo.iter_commits(branchname, max_count=5, skip=skip)
+    result = []
+    for com in itercommits:
+        data = {}
+        data['author'] = com.author
+        data['text'] = com.summary
+        data['hex'] = com.hexsha
+        data['time'] = time.asctime(time.gmtime(com.committed_date))
+        result.append(data)
+
     return result
