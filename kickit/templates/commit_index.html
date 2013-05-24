@@ -1,11 +1,15 @@
 {% extends "master.html" %}
 {% block content %}
+<div class="heading" style="padding-bottom:10px">
+    <h1 style="font-family:Denk One">Commit Log</h1>
+    <hr />
+</div>
 <div class="accordion" id="accordion2">
 	{% for com in data%}
 		<div class="accordion-group">
 	    	<div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ com.hex }}">
-    	    		{{ com.text }}
+                    <strong>Commit Message:&nbsp;</strong>{{ com.text }}
 	    	  	</a>
 	    	</div>
             <div id="{{ com.hex }}" class="accordion-body collapse">
