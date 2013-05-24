@@ -1,5 +1,6 @@
 {% extends "master.html" %}
 
+{% block subtitle %} Home {% endblock %}
 {% block content %}
     {% for dir in dirs %}
     <a href="{{ dir }}">{{ dir }}</a><br />
