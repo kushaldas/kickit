@@ -1,8 +1,27 @@
 {% extends "master.html" %}
 {% block content %}
-{% for com in data%}
-<p>
-    {{ com.hex }} {{ com.author }} {{ com.time }} {{ com.text }}
-</p>
-{% endfor %}
+<div class="accordion" id="accordion2">
+	{% for com in data%}
+		<div class="accordion-group">
+	    	<div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ com.hex }}">
+    	    		{{ com.text }}
+	    	  	</a>
+	    	</div>
+            <div id="{{ com.hex }}" class="accordion-body collapse">
+    	      	<div class="accordion-inner">
+                    <div class="hex text-warning"><strong>commit:&nbsp;</strong>{{ com.hex }}</div>
+                    <div class="author"><strong>Author:&nbsp;</strong>{{ com.author }}</div>
+                    <div class="date"><strong>Date:&nbsp;</strong>{{ com.time }}</div>
+	      	    </div>
+            </div>
+        </div>
+	{% endfor %}
+</div>
+{% if r_dict['is_prev'] %}
+    <a href="/{{ r_dict['reponame']}}/commits/{{ r_dict['branchname'] }}?page={{ r_dict['prev_page'] }}" class="btn">Prev</a>
+{% endif %}
+{% if r_dict['is_next'] %}
+    <a href="/{{ r_dict['reponame']}}/commits/{{ r_dict['branchname'] }}?page={{ r_dict['next_page'] }}" class="btn" style="float:right">Next</a>
+{% endif %}
 {% endblock  %}

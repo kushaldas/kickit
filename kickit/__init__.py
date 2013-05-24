@@ -61,11 +61,29 @@ def index_commits(reponame, branchname='master', path=''):
     if not os.path.exists(repopath):
         return "Sorry"
     page = 1
+    is_prev = False
+    is_next = False
+    next_page = prev_page = 0
     try:
         if 'page' in request.args:
             page = int(request.args['page'])
+            if page != 1:
+                is_prev = True
+                prev_page = page - 1
     except Exception:
         pass
     if not path: # We need to show the index
         data = show_commit_index(repopath, branchname, page)
-    return render_template('commit_index.html', data=data)
+        if show_commit_index(repopath, branchname, page+1) != []:
+            is_next = True
+            next_page = page + 1
+
+    ret_dict = {
+        'is_prev' : is_prev,
+        'is_next' : is_next,
+        'prev_page' : prev_page,
+        'next_page' : next_page,
+        'branchname': branchname,
+        'reponame' : reponame,
+    }
+    return render_template('commit_index.html', data=data, r_dict = ret_dict)
