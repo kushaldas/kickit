@@ -7,11 +7,7 @@ from jinja2.ext import Markup
 
 app = Flask(__name__)
 
-try:
-    from settings.settings import PATH
-except:
-    raise RuntimeError('settings/settings.py file not configured properly.')
-    shutdown_server()
+PATH = ""
 
 @app.route('/')
 def home():
