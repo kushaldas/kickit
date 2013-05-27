@@ -67,6 +67,10 @@ def get_branches(path):
 def get_mime_type(repo, branchname, path):
     '''
     Find the mime-type of the given path.
+
+    :arg repo: git.Repo
+    :arg branchname: Name of the branch
+    :arg path: File path.
     '''
     branch = None
     for head in repo.heads:
