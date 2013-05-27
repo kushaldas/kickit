@@ -1,6 +1,6 @@
 import os
 from .utils import get_files, get_branches, get_blob_text, show_commit_index, \
-                    shutdown_server, get_git_directories
+                    get_git_directories
 from flask import Flask, request
 from flask import render_template
 from jinja2.ext import Markup
