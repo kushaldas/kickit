@@ -111,8 +111,15 @@ def show_commit_index(repopath='', branchname='master', page=1):
     for com in itercommits:
         data = {}
         data['author'] = com.author
-        data['text'] = com.summary
+        if len(com.summary) > 50:
+            text = com.summary[:50]
+            text += '...'
+        else:
+            text = com.summary
+        data['text'] = text
+        data['message'] = com.message
         data['hex'] = com.hexsha
+        data['total'] = com.stats.total
         data['time'] = time.asctime(time.gmtime(com.committed_date))
         result.append(data)
 
