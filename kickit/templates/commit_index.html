@@ -11,14 +11,16 @@
 	    	<div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#{{ com.hex }}">
                     <strong>Commit Summary:&nbsp;</strong>{{ com.text }}
+                <div class="date">{{ com.time }}</div>
 	    	  	</a>
+
 	    	</div>
             <div id="{{ com.hex }}" class="accordion-body collapse">
     	      	<div class="accordion-inner">
                     <div class="hex text-warning"><strong>commit:&nbsp;</strong>{{ com.hex }}</div>
                     <div class="author"><strong>Author:&nbsp;</strong>{{ com.author }}</div>
                     <div class="message">{{ com.message }}</div>
-                    <div class="date"><strong>Date:&nbsp;</strong>{{ com.time }}</div>
+                    
 	      	    </div>
             </div>
         </div>
