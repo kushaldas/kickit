@@ -1,6 +1,6 @@
 kickit
 ======
-A web frontend to git projects. This is being developed.
+A web frontend to git projects. This is under development.
 
 To run
 ------
