@@ -16,14 +16,6 @@ def home():
     dirs = get_git_directories(PATH)
     return render_template('home.html', dirs=dirs)
 
-# @app.route('/<reponame>')
-# def index(reponame):
-#     repopath = os.path.join(PATH, reponame)
-#     if not os.path.exists(repopath):
-#         return "Sorry"
-#     dirs, files = get_files(repopath, 'master')
-#     branches = get_branches(repopath)
-#     return render_template('index.html', dirs=dirs, files=files, projectname=reponame, branches=branches)
 
 @app.route('/<reponame>')
 @app.route('/<reponame>/tree/<branchname>', defaults={'path': ''})
