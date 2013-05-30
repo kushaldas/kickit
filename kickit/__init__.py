@@ -1,4 +1,5 @@
-import ConfigParser,os
+import os
+import ConfigParser
 from .utils import get_files, get_branches, get_blob_text, show_commit_index, \
                     get_git_directories
 from flask import Flask, request
