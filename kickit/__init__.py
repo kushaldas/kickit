@@ -1,4 +1,5 @@
 import os
+import ConfigParser
 from .utils import get_files, get_branches, get_blob_text, show_commit_index, \
                     get_git_directories
 from flask import Flask, request
@@ -7,7 +8,10 @@ from jinja2.ext import Markup
 
 app = Flask(__name__)
 
-PATH = ""
+config = ConfigParser.ConfigParser();
+config.readfp(open('./kickit.conf'))
+PATH = config.get('kickit', 'PATH')
+
 
 @app.route('/')
 def home():
