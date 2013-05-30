@@ -17,9 +17,9 @@
 	    	</div>
             <div id="{{ com.hex }}" class="accordion-body collapse">
     	      	<div class="accordion-inner">
-                    <div class="hex text-warning"><strong>commit:&nbsp;</strong>{{ com.hex }}</div>
+                    <div class="hex text-warning"><strong>commit:&nbsp;</strong><a href="/{{ r_dict['reponame'] }}/commits/{{ r_dict['branchname'] }}/{{ com.hex }}">{{ com.hex }}</a></div>
                     <div class="author"><strong>Author:&nbsp;</strong>{{ com.author }}</div>
-                    <div class="message"><a href="/{{ r_dict['reponame'] }}/commits/{{ r_dict['branchname'] }}/{{ com.hex }}">{{ com.message }}</a></div>
+                    <div class="message">{{ com.message }}</div>
                     
 	      	    </div>
             </div>
